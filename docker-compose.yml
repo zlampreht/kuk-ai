@@ -11,3 +11,31 @@ services:
       VITE_HOST: 0.0.0.0
     stdin_open: true
     tty: true
+
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    volumes:
+     - ./api:/app
+     - /app/node_modules
+    environment:
+      NODE_ENV: development
+    stdin_open: true
+    tty: true
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - pgdata:/var/lib/postgresql/data 
+ 
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8001:8080
+ 
+volumes:
+  pgdata:
