@@ -22,9 +22,9 @@ jobs:
           echo "app is working"
          else
            echo "Test failed"
-           docker compose logs
+           docker compose -f docker-compose.test.yml logs
            exit 1 
          fi
 
       - name: Cleanup
-        run: docker compose down 
+        run: docker compose -f docker-compose.test.yml down 
