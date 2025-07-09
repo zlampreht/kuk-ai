@@ -18,7 +18,7 @@ jobs:
       - name: Healthcheck 
         run: |
          sleep 30 
-         if curl -f https://localhost:3000/api/v1/health; then
+         if curl -f http://localhost:3000/api/v1/health; then
           echo "app is working"
          else
            echo "Test failed"
