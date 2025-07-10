@@ -6,7 +6,7 @@
   "type":"module",
   "scripts": {
     "start": "node main.js",
-    "dev": "nodemon main.js"
+    "dev": "nodemon --legacy-watch main.js"
   },
   "dependencies": {
     "@prisma/client": "^6.11.1",

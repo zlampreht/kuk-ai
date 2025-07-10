@@ -14,8 +14,8 @@ const savedRecipes = [
         totalTime: 20
     },
     {
-        title: 'Test',
-        ingredients: ['Rice', 'Chicken'],
+        title: 'Kebab',
+        ingredients: ['ground lamb, onions, mint, cilantro, ginger paste, and chile paste'],
         instructions: ['Just do it'],
         totalTime: 20
     },

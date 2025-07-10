@@ -12,7 +12,7 @@ export async function saveRecipe(req, res) {
 
         if (recipe) {
           res.json({
-            'message': 'Recipe saved'
+            'message': 'Recipe saved!!'
           });
         } else {
           res.status(500).json({
