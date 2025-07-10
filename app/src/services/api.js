@@ -33,7 +33,8 @@ api.interceptors.response.use(
 
 export async function login({ email, password }) {
   const response = await api.post("/api/v1/auth/login", {
-    email, password
+    email,
+    password
   });
   return response.data;
 }
@@ -42,7 +43,9 @@ export async function login({ email, password }) {
 
 export async function register({ name, email, password }) {
   const response = await api.post("/api/v1/auth/register", {
-    name, email, password
+    name,
+    email,
+    password
   });
 
   return response.data;
@@ -51,8 +54,16 @@ export async function register({ name, email, password }) {
 
 export async function saveRecipe({ title, ingredients, instructions, totalTime }) {
   const response = await api.post("/api/v1/recipes", {
-    title, ingredients, instructions, totalTime
+    title,
+    ingredients,
+    instructions,
+    totalTime
   });
 
   return response.data;
+}
+export async function getRecipes() {
+  const response = await api.get("/api/v1/recipes");
+  return response.data;
+
 }

@@ -1,27 +1,15 @@
 import { RecipeCard } from "../components/RecipeCard";
+import { useState, useEffect } from "react";
+import { getRecipes } from "../services/api";
 
-const savedRecipes = [
-    {
-        title: 'Test',
-        ingredients: ['Rice', 'Chicken'],
-        instructions: ['Just do it'],
-        totalTime: 20
-    },
-    {
-        title: 'Test',
-        ingredients: ['Rice', 'Chicken'],
-        instructions: ['Just do it'],
-        totalTime: 20
-    },
-    {
-        title: 'Kebab',
-        ingredients: ['ground lamb, onions, mint, cilantro, ginger paste, and chile paste'],
-        instructions: ['Just do it'],
-        totalTime: 20
-    },
-];
 
 function Saved() {
+    const [savedRecipes, setSaveRecipes] = useState([]);
+    useEffect(() => {
+        getRecipes().then(response => setSaveRecipes(response.recipes));
+    }, []);
+
+
     return (
         <div className="min-h-screen pt-16">
             <div className="max-w-5xl mx-auto px-6 py-4">

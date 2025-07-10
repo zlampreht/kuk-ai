@@ -3,23 +3,26 @@
 @tailwind utilities;
 
 @layer base {
- * {
-  scrollbar-width: none;
-  
- } 
-   *::webkit-scrollbar {
+  * {
+    scrollbar-width: none;
+
+  }
+
+  *::webkit-scrollbar {
     display: none;
-   }
+  }
 
 
-   body{
+  body {
     @apply text-white;
-    
 
-   };
- }
 
- @layer utilities {
+  }
+
+  ;
+}
+
+@layer utilities {
   .line-clamp-2 {
     @apply overflow-hidden;
     display: -webkit-box;
@@ -62,4 +65,28 @@
   .save-button {
     @apply w-full py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-purple-400/30 rounded-lg text-white transition-all duration-200 font-medium text-sm;
   }
-}
+
+  .modal-slide-in {
+    animation: slideIn 2.5s ease-in-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+      box-shadow: 0 0 10px rgba(147, 51, 234, 0.15), 0 0 20px rgba(236, 72, 153, 0.08);
+    }
+
+    50% {
+      opacity: 1.5;
+      transform: translateX(5px);
+      box-shadow: 0 0 20px rgba(147, 51, 234, 0.2), 0 0 40px rgba(236, 72, 153, 0.15);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateX(0px);
+      box-shadow: none;
+    }
+  }
+} 
