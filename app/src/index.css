@@ -73,13 +73,13 @@
   @keyframes slideIn {
     from {
       opacity: 0;
-      transform: translateX(20px);
+      transform: translateX(200px);
       box-shadow: 0 0 10px rgba(147, 51, 234, 0.15), 0 0 20px rgba(236, 72, 153, 0.08);
     }
 
     50% {
       opacity: 1.5;
-      transform: translateX(5px);
+      transform: translateX(10px);
       box-shadow: 0 0 20px rgba(147, 51, 234, 0.2), 0 0 40px rgba(236, 72, 153, 0.15);
     }
 
