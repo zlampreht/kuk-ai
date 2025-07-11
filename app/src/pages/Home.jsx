@@ -2,6 +2,9 @@ import { useState } from "react";
 import { RecipeCard } from "../components/RecipeCard";
 import Lottie from "lottie-react"
 import FryingPan from "../assets/fry.json";
+import { aiGenerateRecipe } from "../services/api";
+import { toast } from 'react-toastify'
+
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -14,13 +17,18 @@ function Home() {
     }
 
     setIsLoading(true);
-    await new Promise(r => setTimeout(r, 9000));
-    setRecipe({
-      title: 'Test',
-      ingredients: ['Rice', 'Chicken'],
-      instructions: ['Just do it'],
-      totalTime: 20
-    });
+    try {
+      const aiResponse = await aiGenerateRecipe({
+        prompt: prompt.trim()
+      });
+      setRecipe(aiResponse.recipe);
+    } catch (error) {
+      if (error.response?.status == 422) {
+        toast.info('Invalid prompt!');
+      } else {
+        toast.info('Something went wrong, sorry bro')
+      }
+    }
     setPrompt("");
     setIsLoading(false);
   }
@@ -31,27 +39,27 @@ function Home() {
         {isLoading ?
           <div className="text-center mb-12  flex flex-col items-center justify-center">
             <Lottie
-            animationData={FryingPan}
-            loop
-            className="w-60 h-60"
-            speed={3}
+              animationData={FryingPan}
+              loop
+              className="w-60 h-60"
+              speed={3}
             />
-            <span clasName="text-white-600 text-xl font-medium">
-              Yor recipe is kuking
+            <span className="text-white-600 text-xl font-medium">
+              Your recipe is currently being cooked, please wait a few seconds
             </span>
-            
+
           </div>
-        : !recipe ? (
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
-              Welcome to CookAI
-            </h1>
-          </div>
-        ) : (
-          <div className="max-w-5xl mx-auto">
-            <RecipeCard recipe={recipe} hasSave={true} />
-          </div>
-        )}
+          : !recipe ? (
+            <div className="text-center mb-12">
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                Welcome to CookAI
+              </h1>
+            </div>
+          ) : (
+            <div className="max-w-5xl mx-auto">
+              <RecipeCard recipe={recipe} hasSave={true} />
+            </div>
+          )}
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 bg-white/5 backdrop-blur-lg border-t border-white/15 p-4">
