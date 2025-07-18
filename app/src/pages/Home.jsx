@@ -55,7 +55,7 @@ function Home() {
               speed={3}
             />
             <span className="text-white-600 text-xl font-medium">
-              Your recipe is currently being cooked, please wait a few seconds
+              Your recipe is currently being cooked.
             </span>
 
           </div>
